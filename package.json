@@ -1,5 +1,5 @@
 {
-  "name": "long-invest",
+  "name": "cryptfolio",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,9 +10,18 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/react-table": "^7.0.22",
+    "binance": "https://github.com/afshin-hoseini/binance#Ws-baseurl-patch",
+    "cors": "^2.8.5",
+    "cryptocurrency-icons": "^0.16.1",
+    "express": "^4.17.1",
+    "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^1.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "react-table": "^7.5.0",
+    "styled-components": "^5.1.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
