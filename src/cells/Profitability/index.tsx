@@ -14,10 +14,6 @@ export const Profitability : FC<Props> = ({vault})=>{
     const remainingAssetValue = (vault.remainingAmount ?? 0) * (currentPrice??0);
     const totalSell = (vault.totalSell ?? 0) + remainingAssetValue;
 
-    if(vault.symbol === "BNB") {
-        console.log("totalSell: ", totalSell)
-    }
-
     const percentage = (totalSell - (vault.totalBuy ?? 0))/(vault.totalBuy ?? 0);
 
     return useMemo(()=>(
