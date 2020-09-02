@@ -7,17 +7,21 @@ export function GetStyle(CLASSname : string)
     var styleSheets = document.styleSheets;
     var styleSheetsLength = styleSheets.length;
     for(var i = 0; i < styleSheetsLength; i++){
-        if (styleSheets[i].rules ) { var classes = styleSheets[i].rules; }
+        const styleSheet = styleSheets[i] as any;
+        if (styleSheet.rules ) { var classes = styleSheet.rules; }
         else { 
-            try {  if(!styleSheets[i].cssRules) {continue;} } 
+            try {  if(!styleSheet.cssRules) {continue;} } 
             //Note that SecurityError exception is specific to Firefox.
-            catch(e) { if(e.name == 'SecurityError') { console.log("SecurityError. Cant readd: "+ styleSheets[i].href);  continue; }}
-            var classes = styleSheets[i].cssRules ;
+            catch(e) { if(e.name === 'SecurityError') { console.log("SecurityError. Cant readd: "+ styleSheet.href);  continue; }}
+            var classes = styleSheet.cssRules ;
         }
         for (var x = 0; x < classes.length; x++) {
-            if ((classes[x] as any).selectorText == CLASSname) {
-                var ret = (classes[x].cssText) ? classes[x].cssText : (classes[x] as any).style.cssText ;
-                if(ret.indexOf((classes[x] as any).selectorText) == -1){ret = (classes[x] as any).selectorText + "{" + ret + "}";}
+
+            const classObject = classes[x] as any;
+
+            if (classObject.selectorText == CLASSname) {
+                var ret = (classObject.cssText) ? classObject.cssText : classObject.style.cssText ;
+                if(ret.indexOf(classObject.selectorText) == -1){ret = classObject.selectorText + "{" + ret + "}";}
                 return ret;
             }
         }
