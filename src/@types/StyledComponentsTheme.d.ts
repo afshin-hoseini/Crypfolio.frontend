@@ -1,8 +1,6 @@
-
-import 'styled-components'
+import "styled-components";
 
 type StyledComponentsTheme = {
-
   colors?: {
     mainBkg?: string;
     primary?: string;
@@ -14,7 +12,7 @@ type StyledComponentsTheme = {
     profit?: string;
     loss?: string;
     zeroNet?: string;
-  },
+  };
   typographs?: {
     "main-title": string;
     head1: string;
@@ -22,9 +20,10 @@ type StyledComponentsTheme = {
     head3: string;
     "primary-text": string;
     "secondary-text": string;
-  }
-}
+  };
+  fonts?: string[];
+};
 
 declare module "styled-components" {
-    interface DefaultTheme extends StyledComponentsTheme {}
+  interface DefaultTheme extends StyledComponentsTheme {}
 }

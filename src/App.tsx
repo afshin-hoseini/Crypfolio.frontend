@@ -8,14 +8,10 @@ import { StyleProvider } from './Theme';
    
     return(
       
-      
         <PriceContextProvider>
           <StyleProvider>
-
-          <span className="text-main-title">HELLO</span>
+            <InvestmentTable/>
           </StyleProvider>
-
-          <InvestmentTable/>
         </PriceContextProvider>
     )
  }
