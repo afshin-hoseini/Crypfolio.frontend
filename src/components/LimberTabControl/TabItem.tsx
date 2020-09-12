@@ -3,8 +3,6 @@ import { TabItemComponentProps } from './@types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { TabItemWrapper } from './styles';
 
-console.log("TabItemWrapper =>", TabItemWrapper)
-
 export const TabItem : FC<TabItemComponentProps> = ({
     title,
     icon,
