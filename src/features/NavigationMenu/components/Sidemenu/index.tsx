@@ -3,6 +3,8 @@ import { SideMenuWrapper } from '../styles';
 import {SideMenuComponentProps, MenuItemId} from '../../@types';
 import { LimberTabControl } from 'src/components/LimberTabControl';
 import { TabItemId } from 'src/components/LimberTabControl/@types';
+import appLogo from 'src/assets/Logo/logo.png'
+import { MainTitle } from 'src/components/Text';
 
 /**
  * Represents application's side menu.
@@ -24,7 +26,11 @@ export const SideMenuComponent : FC<SideMenuComponentProps> = ({
     return (
         <SideMenuWrapper>
 
-            <div className="sidemenu-header"/>
+            <div className="sidemenu-header">
+                <img src={appLogo}/>
+                <MainTitle color="primary">Cryptfolio</MainTitle>
+            </div>
+
             <LimberTabControl 
                 items={items} 
                 selectedId={selectedId || items?.[0]?.id}

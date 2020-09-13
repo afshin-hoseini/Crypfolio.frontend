@@ -25,6 +25,6 @@ export type TabItemComponentProps = TabItem & {
 export type TabItemsContainerComponentProps =  {
     selectedId?: TabItemId;
     items?: TabItem[];
-    onSelect?:(tabId: TabItem)=>void;
+    onSelect?:(tabId: TabItemId)=>void;
     className?: string;
 };
