@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import { TextProps, TypedTextProps, TextType } from './@types';
 
-export const Text : FC<TextProps> = ({children, className, type})=> {
+export const Text : FC<TextProps> = ({children, className, type, color})=> {
+
+    const colorClass = color ? `text-color-${color ?? "neutral"}` : "";
 
     return (
-    <span className={`${type} ${className}`}>{children}</span>
+        <span className={`${type} ${className} ${colorClass}`}>{children}</span>
     )
 }
 

@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle<{classes:string}>`
  */
 export const GlobalStyleInstaller : FC = ()=>{
 
-    const {typographs} = useContext(ThemeContext);
+    const {typographs, textColors} = useContext(ThemeContext);
 
     /**
      * Creates typograph classes in format of `.typograph-<variant>, .text-<variant>`.
@@ -31,6 +31,16 @@ export const GlobalStyleInstaller : FC = ()=>{
 
     }, [typographs]);
 
+    /**
+     * Generates text color classes like `text-color-primary` etc.
+     */
+    const textColorClasses = useMemo(()=>{
+        return Object.keys(textColors || {})
+                .map(key => `.typograph-color-${key}, .text-color-${key} { color: ${textColors?.[key as keyof typeof textColors]} }`)
+                .join(" ");
+    },[textColors])
 
-    return useMemo(()=><GlobalStyle classes={typographClasses}/>, [typographClasses])
+
+
+    return useMemo(()=><GlobalStyle classes={typographClasses + textColorClasses}/>, [textColorClasses, typographClasses])
 }

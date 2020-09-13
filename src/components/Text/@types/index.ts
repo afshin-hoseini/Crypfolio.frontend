@@ -1,3 +1,5 @@
+import { TextColors } from "src/@types/StyledComponentsTheme"
+
 export enum TextType {
     MainTitle="text-main-title", 
     Header1="text-head1", 
@@ -10,6 +12,7 @@ export enum TextType {
 export type TextProps = {
     type: TextType;
     className?: string;
+    color?: keyof TextColors;
 }
 
 export type TypedTextProps = Omit<TextProps, "type">

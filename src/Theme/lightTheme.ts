@@ -13,6 +13,10 @@ export const lightTheme: StyledComponentsTheme = {
     loss: "#EB5757",
     zeroNet: "#4F4F4F",
   },
+  textColors: {
+      neutral: "#4F4F4F",
+      primary: "#545DAD"
+  },
   fonts: ["Nunito", "Montserrat"],
   typographs: {
     "main-title": `
