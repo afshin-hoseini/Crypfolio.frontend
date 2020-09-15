@@ -1,7 +1,11 @@
-import { StyledComponentsTheme } from "../@types/StyledComponentsTheme";
+import { 
+    StyledComponentsTheme, 
+    ThemeColors, 
+    ThemeContainers, 
+    ThemeTextColors 
+} from "../@types/StyledComponentsTheme";
 
-export const lightTheme: StyledComponentsTheme = {
-  colors: {
+const colors : ThemeColors = {
     mainBkg: "#FFFFFF",
     primary: "#545DAD",
     secondary: "#B0B6EC",
@@ -12,12 +16,56 @@ export const lightTheme: StyledComponentsTheme = {
     profit: "#27AE60",
     loss: "#EB5757",
     zeroNet: "#4F4F4F",
-  },
+    accentContainer: "#FDDADB"
+};
+
+const textColors : ThemeTextColors =  {
+    neutral: colors.zeroNet!,
+    primary: colors.primary!,
+    accent: colors.accent!,
+    /** 
+     * Provides the highest contrast according to theme. 
+     * Usually matches the theme darkeness mode. 
+     */
+    contrast: colors.mainBkg!
+} 
+
+const containers : ThemeContainers = {
+    l1Container: {
+        background: colors.l1Container!,
+        borderRadius: "30px",
+        textColor: textColors.neutral!,
+        titleTextClass: "head1"
+    },
+    l2Container: {
+        background: colors.l2Container!,
+        borderRadius: "30px",
+        textColor: textColors.neutral!,
+        titleTextClass: "head1"
+    },
+    accent: {
+        background: colors.accentContainer!,
+        borderRadius: "30px",
+        textColor: textColors.accent!,
+        titleTextClass: "head1"
+    },
+    primary: {
+        background: colors.primary!,
+        borderRadius: "30px",
+        textColor: textColors.contrast!,
+        titleTextClass: "head1"
+    }
+
+}
+
+export const lightTheme: StyledComponentsTheme = {
+  colors,
   textColors: {
       neutral: "#4F4F4F",
       primary: "#545DAD"
   },
   fonts: ["Nunito", "Montserrat"],
+  containers,
   typographs: {
     "main-title": `
             font-family: Montserrat;
