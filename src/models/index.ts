@@ -1,1 +1,1 @@
-export * from './TradeModel'
+export * from './TradeModel';

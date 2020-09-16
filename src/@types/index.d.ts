@@ -1,7 +1,6 @@
 type Vault = {
-    
-    symbol?: string;
-    totalBuy?: number;
-    totalSell?: number;
-    remainingAmount?: number;
-}
+  symbol?: string;
+  totalBuy?: number;
+  totalSell?: number;
+  remainingAmount?: number;
+};
