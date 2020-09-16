@@ -1,4 +1,4 @@
-import "styled-components";
+import 'styled-components';
 
 type ThemeColors = {
   mainBkg?: string;
@@ -19,15 +19,15 @@ type ThemeTextColors = {
   neutral?: string;
   accent?: string;
   contrast?: string;
-}
+};
 
 type Typographs = {
-  "main-title": string;
+  'main-title': string;
   head1: string;
   head2: string;
   head3: string;
-  "primary-text": string;
-  "secondary-text": string;
+  'primary-text': string;
+  'secondary-text': string;
 };
 
 type ContainerDefinition = {
@@ -35,10 +35,10 @@ type ContainerDefinition = {
   borderRadius: string;
   textColor: string;
   titleTextClass?: keyof Typographs;
-}
+};
 
 type ThemeContainers = {
-  [k in "l1Container" | "l2Container" | "primary" | "accent"] : ContainerDefinition;
+  [k in 'l1Container' | 'l2Container' | 'primary' | 'accent']: ContainerDefinition;
 };
 
 type StyledComponentsTheme = {
@@ -49,6 +49,7 @@ type StyledComponentsTheme = {
   containers?: ThemeContainers;
 };
 
-declare module "styled-components" {
+declare module 'styled-components' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends StyledComponentsTheme {}
 }

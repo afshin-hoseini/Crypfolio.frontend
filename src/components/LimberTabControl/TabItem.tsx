@@ -1,29 +1,20 @@
 import React, { FC, useCallback, useRef } from 'react';
 import { TabItemComponentProps } from './@types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TabItemWrapper } from './styles';
 
-export const TabItem : FC<TabItemComponentProps> = ({
-    title,
-    icon,
-    id,
-    selected,
-    onClick: clickHandler
-})=>{
+export const TabItem: FC<TabItemComponentProps> = ({ title, icon, id, selected, onClick: clickHandler }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const wrapperRef = useRef<HTMLDivElement>(null);
+  const onClick = useCallback(() => {
+    clickHandler?.(id || '', wrapperRef);
+  }, [id, clickHandler]);
 
-    const onClick = useCallback(()=>{
-        clickHandler?.(id || "", wrapperRef)
-    }, [id,clickHandler]);
-
-    return (
-        <TabItemWrapper 
-            id={`item-${id}`}
-            className={`${selected ? "selected":""}`}
-            onClick={onClick} 
-            ref={wrapperRef}>
-            <span className="text-primary-text"><FontAwesomeIcon icon={icon}/>{' '}{title}</span>
-        </TabItemWrapper>
-    )
-}
+  return (
+    <TabItemWrapper id={`item-${id}`} className={`${selected ? 'selected' : ''}`} onClick={onClick} ref={wrapperRef}>
+      <span className="text-primary-text">
+        <FontAwesomeIcon icon={icon} /> {title}
+      </span>
+    </TabItemWrapper>
+  );
+};

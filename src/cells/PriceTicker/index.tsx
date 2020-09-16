@@ -2,16 +2,12 @@ import React, { FC, useMemo } from 'react';
 import { usePriceContext } from '../../PriceContext';
 
 type Props = {
-    symbol: string;
-}
+  symbol: string;
+};
 
-export const PriceTicker : FC<Props> = ({symbol})=>{
+export const PriceTicker: FC<Props> = ({ symbol }) => {
+  const { priceTickers } = usePriceContext();
+  const price = priceTickers?.[symbol?.toLowerCase()];
 
-    const {priceTickers} = usePriceContext();
-    const price = priceTickers?.[symbol?.toLowerCase()];
-
-    return useMemo(()=>(
-            <span>{price}</span>
-        )
-    , [price]);
-}
+  return useMemo(() => <span>{price}</span>, [price]);
+};
