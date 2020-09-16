@@ -1,6 +1,6 @@
-import { ITradeModel, TradeSide } from '../models';
+import { TradeModel, TradeSide } from '../models';
 
-export const trades: ITradeModel[] = [
+export const trades: TradeModel[] = [
   {
     symbol: 'BTC',
     base: 'USDT',

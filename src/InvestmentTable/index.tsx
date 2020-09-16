@@ -3,7 +3,7 @@ import { Column, useTable } from 'react-table';
 import { Cells } from '../cells';
 import { usePriceContext } from '../PriceContext';
 import { trades } from './myTrades';
-import { ITradeModel, TradeSide } from '../models';
+import { TradeModel, TradeSide } from '../models';
 
 const defaultValut: () => Vault = () => ({
   remainingAmount: 0,
@@ -12,7 +12,7 @@ const defaultValut: () => Vault = () => ({
   totalSell: 0,
 });
 
-const valutsDataProvider = (trades: ITradeModel[]) => {
+const valutsDataProvider = (trades: TradeModel[]) => {
   const vaultCollection = trades.reduce<{
     [k: string]: Vault;
   }>((collection, trade) => {

@@ -200,7 +200,7 @@ class Beautifier {
     if (!beautifications) {
       return object;
     }
-    let newItem = {};
+    const newItem = {};
     _.each(object, (value, key) => {
       const newKey = beautifications[key] || key;
       if (_.isArray(value)) {
