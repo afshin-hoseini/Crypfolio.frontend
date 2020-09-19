@@ -1,0 +1,8 @@
+{
+    "AppName": "Cryptfolio",
+    "features": {
+        "polViewer": {
+            "title": "Net profit or loss"
+        }
+    }
+}
