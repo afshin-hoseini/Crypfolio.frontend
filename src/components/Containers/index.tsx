@@ -23,8 +23,7 @@ export const Container: FC<ContainerComponentProps> = ({ children, mode, classNa
 
   return (
     <ContainerWrapper className={`${className || ''}`} mode={mode} padding={padding}>
-      {title && <span className={titleClass}>{title}</span>}
-
+      {title && (typeof title === 'string' ? <span className={titleClass}>{title}</span> : { title })}
       <div className="content-wrapper">{children}</div>
     </ContainerWrapper>
   );
