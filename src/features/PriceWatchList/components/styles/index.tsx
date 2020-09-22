@@ -40,3 +40,10 @@ export const DragHandleWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const WatchListTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;

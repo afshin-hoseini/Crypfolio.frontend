@@ -3,6 +3,8 @@ type WatchListComponentProps = {
   symbols?: string[];
   /** Will be invoked when user chanes the order of symbols in watch list */
   onOrderChanged?: (symbols: string[]) => void;
+  /** Will be invoked once the user clicks the add watch button */
+  onAddWatchBtnClicked?: () => void;
 };
 
 type PriceTickers = { [k: string]: number };

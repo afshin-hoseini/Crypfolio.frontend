@@ -50,4 +50,5 @@ export const SimpleUsage = Template.bind({});
 SimpleUsage.args = {
   symbols: ['BTC', 'XTZ', 'XRP'],
   onOrderChanged: console.log,
+  onAddWatchBtnClicked: () => console.log('Add clicked'),
 };
