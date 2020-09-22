@@ -1,4 +1,10 @@
-import { StyledComponentsTheme, ThemeColors, ThemeContainers, ThemeTextColors } from '../@types/StyledComponentsTheme';
+import {
+  StyledComponentsTheme,
+  ThemeButtons,
+  ThemeColors,
+  ThemeContainers,
+  ThemeTextColors,
+} from '../@types/StyledComponentsTheme';
 
 const colors: ThemeColors = {
   mainBkg: '#FFFFFF',
@@ -52,12 +58,20 @@ const containers: ThemeContainers = {
   },
 };
 
+const buttons: ThemeButtons = {
+  contained: {
+    background: colors.mainBkg,
+    textClass: 'primary-text',
+  },
+  outlined: {
+    textClass: 'primary-text',
+  },
+};
+
 export const lightTheme: StyledComponentsTheme = {
   colors,
-  textColors: {
-    neutral: '#4F4F4F',
-    primary: '#545DAD',
-  },
+  buttons,
+  textColors,
   fonts: ['Nunito', 'Montserrat'],
   containers,
   typographs: {
