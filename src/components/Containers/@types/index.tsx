@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export enum ContainerMode {
   /** Same as `Main` */
   Level1 = 'l1Container',
@@ -19,7 +21,7 @@ export type ContainerComponentProps = {
 
   /** CSS like padding string to easily apply paading without defining classname */
   padding?: string;
-  title?: string;
+  title?: ReactNode;
 };
 
 export type DefinedContainerComponentProps = Omit<ContainerComponentProps, 'mode'>;

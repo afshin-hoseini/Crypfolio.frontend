@@ -3,6 +3,9 @@
     "features": {
         "polViewer": {
             "title": "Net profit or loss"
+        },
+        "priceWathList": {
+            "title": "Quick Watch"
         }
     }
 }

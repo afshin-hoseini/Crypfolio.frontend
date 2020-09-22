@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { AccentContainer } from 'src/components/Containers';
 
 export const PolViewerContainer = styled(AccentContainer)`
-  padding: 25px 45px;
   .content-wrapper {
     display: flex;
     flex-direction: column;
