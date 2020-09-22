@@ -14,7 +14,7 @@ type ThemeColors = {
   accentContainer?: string;
 };
 
-type ThemeTextColors = {
+export type ThemeTextColors = {
   primary?: string;
   neutral?: string;
   accent?: string;
@@ -37,12 +37,33 @@ type ContainerDefinition = {
   titleTextClass?: keyof Typographs;
 };
 
+type ButtonThemeDefinition = {
+  textClass?: keyof Typographs;
+  background?: string;
+
+  /** For outlined button, if this parameter has not been set,
+   * the determined color would be picked as border color
+   */
+  strokeColor?: string;
+};
+
+type ThemeButtonTextColors = {
+  primary?: string;
+  dark?: string;
+  accent?: string;
+};
+
+type ThemeButtons = {
+  [k in 'contained' | 'outlined']: ButtonThemeDefinition;
+};
+
 type ThemeContainers = {
   [k in 'l1Container' | 'l2Container' | 'primary' | 'accent']: ContainerDefinition;
 };
 
 type StyledComponentsTheme = {
   colors?: ThemeColors;
+  buttons?: ThemeButtons;
   typographs?: Typographs;
   textColors?: ThemeTextColors;
   fonts?: string[];
