@@ -13,6 +13,7 @@ export type SymbolIconProps = {
   /** Crypto currency symbol, like `BTC` */
   symbol?: string;
   color?: ColorMode;
+  /** @default `Size.Medium` */
   size?: Size;
   /** Determines the color of Icon which emerges when there is no image available for given symbol.  */
   unknownSymbolColor?: string;
