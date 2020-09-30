@@ -6,6 +6,10 @@
         },
         "priceWathList": {
             "title": "Quick Watch"
+        },
+        "overviewTable": {
+            "addTrade": "Add trade",
+            "filterPlaceholder": "Filter by symbols"
         }
     }
 }

@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 import { OverviewTableComponent } from '.';
+import { OverviewTableComponentProps } from '../../@types';
 
 export default {
   component: OverviewTableComponent,
@@ -15,6 +16,7 @@ const Template: Story<OverviewTableComponentProps> = (args) => (
 
 export const SimpleUsage = Template.bind({});
 SimpleUsage.args = {
+  onVaultPinToggled: console.log,
   vaultsData: [
     {
       symbol: 'BTC',

@@ -1,4 +1,27 @@
+import { Container } from 'src/components/Containers';
 import styled from 'styled-components';
+
+export const OverviewTableWrapper = styled(Container)`
+  .overview-table-actions-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 20px 28px;
+
+    .filter-select {
+      width: 100%;
+      margin-right: 12px;
+
+      .react-select__control {
+        min-height: 50px;
+      }
+    }
+
+    .btn-add-trade {
+      white-space: nowrap;
+      padding: 0 24px;
+    }
+  }
+`;
 
 export const OverviewTable = styled.table`
   width: 100%;
