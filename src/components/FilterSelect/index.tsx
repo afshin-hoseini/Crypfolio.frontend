@@ -53,16 +53,14 @@ const StyledSelect = styled(Select)`
 `;
 
 const customComponents = { ...animatedComponents, DropdownIndicator };
-export const FilterSelect: FC<FilterSelectProps> = ({ className = '', options = [] }) => {
+export const FilterSelect: FC<ComponentProps<typeof Select>> = ({ theme, ...props }) => {
   return (
     <StyledSelect
-      className={`${className}`}
+      {...props}
       classNamePrefix="react-select"
       closeMenuOnSelect={false}
       components={customComponents}
-      placeholder="Filter by symbols"
       isMulti
-      options={options}
     />
   );
 };
