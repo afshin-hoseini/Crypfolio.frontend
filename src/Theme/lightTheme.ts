@@ -29,6 +29,8 @@ const textColors: ThemeTextColors = {
    * Usually matches the theme darkeness mode.
    */
   contrast: colors.mainBkg!,
+  loss: colors.loss,
+  profit: colors.profit,
 };
 
 const containers: ThemeContainers = {

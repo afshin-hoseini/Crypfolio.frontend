@@ -19,6 +19,8 @@ export type ThemeTextColors = {
   neutral?: string;
   accent?: string;
   contrast?: string;
+  profit?: string;
+  loss?: string;
 };
 
 type Typographs = {
