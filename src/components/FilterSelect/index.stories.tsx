@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import { FilterSelect } from '.';
 
 export default {
@@ -7,7 +7,7 @@ export default {
   title: 'Components/FilterSelect',
 } as Meta;
 
-const Template: Story<FilterSelectProps> = (args) => <FilterSelect {...args} />;
+const Template: Story<ComponentProps<typeof FilterSelect>> = (args) => <FilterSelect {...args} />;
 
 export const MultiSelectFilter = Template.bind({});
 MultiSelectFilter.args = {
