@@ -8,3 +8,17 @@ type Vault = {
   currentPrice?: number;
   pinned?: boolean;
 };
+
+type Trade = {
+  symbol?: string;
+  base?: string;
+  amount?: number;
+  side?: TradeSide;
+  atPrice?: number;
+};
+
+type User = {
+  id?: number;
+  name?: string;
+  email?: string;
+};
