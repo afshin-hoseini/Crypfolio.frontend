@@ -1,4 +1,5 @@
 import React, { FC, useMemo } from 'react';
+import { Vault } from 'src/@types';
 import { usePriceContext } from '../../PriceContext';
 
 type Props = {

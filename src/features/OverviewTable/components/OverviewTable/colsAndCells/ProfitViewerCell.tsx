@@ -5,6 +5,7 @@ import { ProfitViewerCellWrapper } from '../../styles';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faPercentage, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { ThemeColors } from 'src/@types/StyledComponentsTheme';
+import { Vault } from 'src/@types';
 
 type PolItemComponentProps = {
   icon: IconDefinition;

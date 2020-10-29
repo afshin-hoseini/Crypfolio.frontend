@@ -18,7 +18,7 @@ const loginApiCall = (payload: { username: string; password: string }) => {
 };
 
 /**
- * TODO: store user token in storage
+ * TODO: store user token in storage.
  */
 function* handleLogin(action: ReturnType<typeof authenticationSlice.actions.login>) {
   try {

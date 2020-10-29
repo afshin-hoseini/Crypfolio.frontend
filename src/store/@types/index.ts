@@ -1,4 +1,6 @@
+import { EntityState } from '@reduxjs/toolkit';
 import { ApiCallStatus, ConnectionStatus } from 'src/@types/enums';
+import { Vault, User, Trade } from 'src/@types';
 
 export type ApiCallStatusWithReport = {
   status?: ApiCallStatus;
@@ -31,15 +33,22 @@ export type UserStore = {
   updatingStatus?: ApiCallStatusWithReport;
 };
 
-export type TradeStoreItem = {
+export type TradeStoreModificationStatus = {
+  /** The trade instance that the corresponding action is being performed on. */
   trade: Trade;
-  updatingStatus: ApiCallStatusWithReport;
-  removingStatus: ApiCallStatusWithReport;
+  /** The status of action */
+  status: ApiCallStatusWithReport;
+  /** The action that has been dispatched on the given trade. */
+  action: 'create' | 'update' | 'delete';
+  /**
+   * The trade id or a random temprary ID for when the trade object doesn't have ID.
+   */
+  id: string | number;
 };
 
-export type TradesStore = {
-  info: TradeStoreItem[];
-  loadingStatus: ApiCallStatusWithReport[];
+export type TradesStore = EntityState<Trade> & {
+  loadingStatus: ApiCallStatusWithReport;
+  modificationStatuses: { [key: string]: TradeStoreModificationStatus | undefined };
 };
 
 export type PriceTickerStore = {

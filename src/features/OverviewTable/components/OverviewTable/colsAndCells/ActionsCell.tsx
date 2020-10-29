@@ -4,6 +4,7 @@ import { mdiPinOutline, mdiPinOff } from '@mdi/js';
 import { useThemeContext } from 'src/Theme';
 import { ActionButton } from '../../styles';
 import { OverviewTableActionFn } from 'src/features/OverviewTable/@types';
+import { Vault } from 'src/@types';
 
 /**
  * Represents overview tables actions for each row.

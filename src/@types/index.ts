@@ -1,4 +1,6 @@
-type Vault = {
+import { TradeSide } from './enums';
+
+export type Vault = {
   symbol?: string;
   totalBuy?: number;
   totalSell?: number;
@@ -9,7 +11,8 @@ type Vault = {
   pinned?: boolean;
 };
 
-type Trade = {
+export type Trade = {
+  id?: string | number;
   symbol?: string;
   base?: string;
   amount?: number;
@@ -17,7 +20,7 @@ type Trade = {
   atPrice?: number;
 };
 
-type User = {
+export type User = {
   id?: number;
   name?: string;
   email?: string;

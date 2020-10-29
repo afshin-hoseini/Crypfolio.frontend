@@ -11,3 +11,8 @@ export enum ConnectionStatus {
   connected = 'connected',
   disconnected = 'disconnected',
 }
+
+export enum TradeSide {
+  Buy = 1,
+  Sell = -1,
+}

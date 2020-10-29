@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { User } from 'src/@types';
 import { ApiCallStatus } from 'src/@types/enums';
 import { UserStore } from '../@types';
 import { ApiCallStatusWithReport } from '../@types';

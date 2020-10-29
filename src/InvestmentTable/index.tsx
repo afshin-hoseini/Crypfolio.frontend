@@ -4,6 +4,7 @@ import { Cells } from '../cells';
 import { usePriceContext } from '../PriceContext';
 import { trades } from './myTrades';
 import { TradeModel, TradeSide } from '../models';
+import { Vault } from 'src/@types';
 
 const defaultValut: () => Vault = () => ({
   remainingAmount: 0,
