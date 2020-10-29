@@ -1,6 +1,13 @@
-import { EntityState } from '@reduxjs/toolkit';
+import { EntityState, PayloadAction } from '@reduxjs/toolkit';
 import { ApiCallStatus, ConnectionStatus } from 'src/@types/enums';
 import { Vault, User, Trade } from 'src/@types';
+
+/** Describes action data type for trade creation action. */
+export type CreateTradeActionType = PayloadAction<{ trade: Trade; tempId: string | number }>;
+/** Describes action data type for trade deletion action.*/
+export type DeleteTradeActionType = PayloadAction<Trade>;
+/** Describes action data type for trade updating action.*/
+export type UpdateTradeActionType = PayloadAction<Trade>;
 
 export type ApiCallStatusWithReport = {
   status?: ApiCallStatus;

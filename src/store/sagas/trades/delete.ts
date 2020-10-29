@@ -1,38 +1,38 @@
 import { call, put } from 'redux-saga/effects';
 import { Trade } from 'src/@types';
 import { ApiCallStatus } from 'src/@types/enums';
-import { CreateTradeActionType } from 'src/store/@types';
+import { DeleteTradeActionType } from 'src/store/@types';
 import { tradeSlice } from 'src/store/reducers';
 
-const createTradeApi = (trade: Trade) => {
+const deleteTradeApi = (trade: Trade) => {
   return new Promise((resolve) => {
-    resolve({ ...trade, id: 10 } as Trade);
+    resolve(true);
   });
 };
 
-export function* createTradeSaga(action: CreateTradeActionType) {
-  const { tempId, trade } = action.payload;
+export function* deleteTradeSaga(action: DeleteTradeActionType) {
+  const trade = action.payload;
 
   try {
-    const createdTrade = yield call(createTradeApi, trade);
+    yield call(deleteTradeApi, trade);
 
-    // Notifies that the trade has been created.
+    // Notifies that the trade has been deleted.
     yield put(
       tradeSlice.actions.tradeModificationChanged({
-        action: 'create',
-        id: tempId,
+        action: 'delete',
+        id: trade.id!,
         status: { status: ApiCallStatus.succeeded },
-        trade: createdTrade,
+        trade,
       })
     );
   } catch (e) {
     // Notifies failure
     yield put(
       tradeSlice.actions.tradeModificationChanged({
-        action: 'create',
-        id: tempId,
+        action: 'delete',
+        id: trade.id!,
         status: { errorDescription: "Couldn't create trade", errorObject: e, status: ApiCallStatus.failed },
-        trade: trade,
+        trade,
       })
     );
   }

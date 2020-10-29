@@ -1,7 +1,14 @@
 import { createSlice, PayloadAction, createEntityAdapter } from '@reduxjs/toolkit';
 import { Trade } from 'src/@types';
 import { ApiCallStatus } from 'src/@types/enums';
-import { TradesStore, ApiCallStatusWithReport, TradeStoreModificationStatus } from '../@types';
+import {
+  TradesStore,
+  ApiCallStatusWithReport,
+  TradeStoreModificationStatus,
+  CreateTradeActionType,
+  DeleteTradeActionType,
+  UpdateTradeActionType,
+} from '../@types';
 import { createTradeModificationKey } from '../utils';
 
 const name = 'trades';
@@ -14,7 +21,6 @@ const initialState: TradesStore = tradesAdapter.getInitialState({
   modificationStatuses: {},
 });
 
-export type CreateActionType = PayloadAction<{ trade: Trade; tempId: string | number }>;
 export const tradeSlice = createSlice({
   name,
   initialState,
@@ -36,12 +42,46 @@ export const tradeSlice = createSlice({
     },
 
     /** Creates the given trade, this gonna be handled by Saga */
-    create: (state, action: CreateActionType) => {
+    create: (state, action: CreateTradeActionType) => {
       const modification: TradeStoreModificationStatus = {
         action: 'create',
         id: action.payload.tempId,
         status: { status: ApiCallStatus.inProgress },
         trade: action.payload.trade,
+      };
+      const modifKey = createTradeModificationKey(modification.action, modification.id);
+      state.modificationStatuses[modifKey] = modification;
+    },
+
+    /**
+     * Removes the given trade, this gonna be handled by saga.
+     * @throws When the given trade has no ID.
+     */
+    delete: (state, action: DeleteTradeActionType) => {
+      if (!action.payload.id) throw new Error("Cannot delete a trade doesn't have ID");
+
+      const modification: TradeStoreModificationStatus = {
+        action: 'delete',
+        id: action.payload.id!,
+        status: { status: ApiCallStatus.inProgress },
+        trade: action.payload,
+      };
+      const modifKey = createTradeModificationKey(modification.action, modification.id);
+      state.modificationStatuses[modifKey] = modification;
+    },
+
+    /**
+     * Updates the given trade, this gonna be handled by saga.
+     * @throws When the given trade has no ID.
+     */
+    update: (state, action: UpdateTradeActionType) => {
+      if (!action.payload.id) throw new Error("Cannot update a trade doesn't have ID");
+
+      const modification: TradeStoreModificationStatus = {
+        action: 'update',
+        id: action.payload.id!,
+        status: { status: ApiCallStatus.inProgress },
+        trade: action.payload,
       };
       const modifKey = createTradeModificationKey(modification.action, modification.id);
       state.modificationStatuses[modifKey] = modification;
