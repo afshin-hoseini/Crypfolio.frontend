@@ -5,6 +5,7 @@ import { Header3, SecondaryText } from 'src/components/Text';
 import { SymbolCellWrapper } from '../../styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { Vault } from 'src/@types';
 
 /**
  * Renders the overview table's symbol cell. This cell includes symbol's current price.

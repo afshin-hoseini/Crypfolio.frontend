@@ -4,6 +4,7 @@ import React from 'react';
 import { ProfitViewerCellComponent } from './ProfitViewerCell';
 import { ActionsCellComponent } from './ActionsCell';
 import { OverviewTableCellProps } from 'src/features/OverviewTable/@types';
+import { Vault } from 'src/@types';
 
 /**
  * Overview table's symbol viewer cell. Corresponding to UI definitions,

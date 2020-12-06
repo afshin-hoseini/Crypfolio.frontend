@@ -1,4 +1,5 @@
 import { FilterType } from 'react-table';
+import { Vault } from 'src/@types';
 
 /**
  * Filters the given rows according to given vault symbols.

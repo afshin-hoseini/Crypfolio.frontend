@@ -1,4 +1,5 @@
 import { CellProps, TableInstance, UseGlobalFiltersInstanceProps } from 'react-table';
+import { Vault } from 'src/@types';
 
 export type OverviewTableComponentProps = {
   /** The vaults to be presented on table */
