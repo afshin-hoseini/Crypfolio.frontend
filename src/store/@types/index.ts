@@ -53,6 +53,15 @@ export type TradeStoreModificationStatus = {
   id: string | number;
 };
 
+export type WatchListStoreModificationStatus = {
+  /** The symbol that the corresponding action is being performed on. */
+  symbol: string;
+  /** The status of action */
+  status: ApiCallStatusWithReport;
+  /** The action that has been dispatched on the given trade. */
+  action: 'create' | 'update' | 'delete';
+};
+
 export type TradesStore = EntityState<Trade> & {
   loadingStatus: ApiCallStatusWithReport;
   modificationStatuses: { [key: string]: TradeStoreModificationStatus | undefined };
@@ -63,10 +72,17 @@ export type PriceTickerStore = {
   tickers?: { [asset: string]: number };
 };
 
+/** Keeps crypto assets symbols for quick watch list */
+export type WatchListStore = EntityState<string> & {
+  loadingStatus?: ApiCallStatusWithReport;
+  modificationStatuses: { [key: string]: WatchListStoreModificationStatus | undefined };
+};
+
 export type ReduxStore = {
   user?: UserStore;
   authentication?: AuthenticationStore;
   vaults?: VaultsStore;
   trades?: TradesStore;
   priceTicker?: PriceTickerStore;
+  watchlist?: WatchListStore;
 };
