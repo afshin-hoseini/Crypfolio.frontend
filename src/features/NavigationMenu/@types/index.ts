@@ -23,4 +23,9 @@ export type SideMenuComponentProps = {
   items?: MenuItem[];
   selectedId?: MenuItemId;
   onItemSelected?: (item: MenuItem) => void;
+  className?: string;
+};
+
+export type NavigationMenuProps = {
+  className?: string;
 };

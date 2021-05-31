@@ -14,6 +14,7 @@ import { MainTitle } from 'src/components/Text';
 export const SideMenuComponent: FC<SideMenuComponentProps> = ({
   items,
   selectedId,
+  className = '',
   onItemSelected: propOnItemSelected,
 }) => {
   const onItemSelected = useCallback(
@@ -26,7 +27,7 @@ export const SideMenuComponent: FC<SideMenuComponentProps> = ({
   );
 
   return (
-    <SideMenuWrapper>
+    <SideMenuWrapper className={className}>
       <div className="sidemenu-header">
         <img src={appLogo} alt="Cryptfolio Logo" />
         <MainTitle color="primary">Cryptfolio</MainTitle>
