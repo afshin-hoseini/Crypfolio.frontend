@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DashboardContainer = styled.div`
+export const DashboardContainer = styled.main`
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -10,10 +10,9 @@ export const DashboardContainer = styled.div`
   }
 `;
 
-export const DashboardContent = styled.main`
+export const DashboardContent = styled.article`
   display: flex;
   width: 100%;
-  max-width: 900px;
   height: 100%;
   overflow: auto;
   flex-direction: column;
