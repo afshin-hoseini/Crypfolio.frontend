@@ -1,0 +1,38 @@
+export const data: Vault[] = [
+  {
+    symbol: 'BTC',
+    currentPrice: 10600.438239,
+    profitAmount: 30,
+    profitPercentage: 10,
+    remainingAmount: 0.0593254,
+    totalBuy: 1400.56456,
+    totalSell: 49094,
+  },
+  {
+    symbol: 'XTZ',
+    currentPrice: 4.0345,
+    profitAmount: -42.54,
+    profitPercentage: -30,
+    remainingAmount: 10,
+    totalBuy: 800,
+    totalSell: 910,
+  },
+  {
+    symbol: 'TRX',
+    currentPrice: 0.0345,
+    profitAmount: 5,
+    profitPercentage: 6,
+    remainingAmount: 130,
+    totalBuy: 100.56456,
+    totalSell: 10,
+  },
+  {
+    symbol: 'LEND',
+    currentPrice: 0.5784,
+    profitAmount: 10,
+    profitPercentage: 30,
+    remainingAmount: 130,
+    totalBuy: 100.56456,
+    totalSell: 10,
+  },
+];

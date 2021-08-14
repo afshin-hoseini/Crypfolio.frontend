@@ -1,106 +1,84 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ReferenceLine,
-  ResponsiveContainer,
-  Cell,
-} from 'recharts';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import { BarItem } from './BarItem';
+import { data as mockData } from './mockData';
+import { BarChartWrapper } from './styles';
 
-const data: Vault[] = [
-  {
-    symbol: 'BTC',
-    currentPrice: 10600.438239,
-    profitAmount: 30,
-    profitPercentage: 10,
-    remainingAmount: 0.0593254,
-    totalBuy: 1400.56456,
-    totalSell: 49094,
-  },
-  {
-    symbol: 'XTZ',
-    currentPrice: 4.0345,
-    profitAmount: -42.54,
-    profitPercentage: -120,
-    remainingAmount: 10,
-    totalBuy: 800,
-    totalSell: 910,
-  },
-  {
-    symbol: 'TRX',
-    currentPrice: 0.0345,
-    profitAmount: 5,
-    profitPercentage: 6,
-    remainingAmount: 130,
-    totalBuy: 100.56456,
-    totalSell: 10,
-  },
-  {
-    symbol: 'LEND',
-    currentPrice: 0.5784,
-    profitAmount: 10,
-    profitPercentage: 30,
-    remainingAmount: 130,
-    totalBuy: 100.56456,
-    totalSell: 10,
-  },
-];
+const defaultLabelsSectionHeight = 50;
+const defaultBarWidth = 10;
+const defaultBarPadding = 15;
 
-const yDomain = (function () {
-  return data.reduce((max, d) => Math.max(Math.abs(max), Math.abs(d.profitPercentage ?? 0)), 0);
-})();
-export const OverviewBarChart: FC = () => {
-  const [rectHeight, setRectHeight] = useState<number>(0);
+export const OverviewBarChart: FC<{ data?: Vault[]; className?: string }> = ({ data = mockData, className = '' }) => {
+  const labelsSectionHeight = defaultLabelsSectionHeight;
+  const [wrapperRect, setWrapperRect] = useState<DOMRectReadOnly>();
+  const [resizeObserverError, setResizeIbserverError] = useState<string>();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const barsSectionHeight = useMemo(() => {
+    if (!wrapperRect) return 0;
+    return wrapperRect.height - labelsSectionHeight;
+  }, [labelsSectionHeight, wrapperRect]);
+
+  const wrapperWidth = wrapperRect?.width;
+  const barPadding = defaultBarPadding;
 
   useEffect(() => {
-    setTimeout(() => {
-      const svgContainer = document.querySelector('.recharts-surface');
-      const rectHeight = svgContainer
-        ?.querySelector?.('defs')
-        ?.firstElementChild?.firstElementChild?.getAttribute?.('height');
+    if (typeof ResizeObserver === 'undefined') {
+      setResizeIbserverError('Not supported');
+      return;
+    }
+    if (!wrapperRef.current) {
+      setResizeIbserverError('Error occured');
+      return;
+    }
 
-      setRectHeight(Number.parseFloat(rectHeight || '0'));
-    }, 10);
+    const observer = new ResizeObserver((entries) => setWrapperRect(entries[0].contentRect));
+    observer.observe(wrapperRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
+  /**
+   * Finds the max profit and max loss percentages to scale the bars
+   */
+  const { maxLoss, maxProfit } = useMemo(
+    () =>
+      data?.reduce(
+        (prev, item) => {
+          const value = item.profitPercentage ?? 0;
+          if (value > prev.maxProfit) prev.maxProfit = value;
+          if (value < prev.maxLoss) prev.maxLoss = value;
+          return prev;
+        },
+        { maxProfit: 0, maxLoss: 0 }
+      ),
+    [data]
+  );
+
+  const chartScale = Math.max(maxProfit, Math.abs(maxLoss));
+  const barElements = useMemo(() => {
+    return data?.map((item) => {
+      const profitPercentage = item.profitPercentage ?? 0;
+      const isProfitable = profitPercentage >= 0;
+      const height = (Math.abs(profitPercentage) * 50) / chartScale; //(isProfitable ? maxProfit : maxLoss);
+
+      return (
+        <BarItem
+          key={item.symbol}
+          data={item}
+          labelSectionHeight={labelsSectionHeight}
+          space={barPadding}
+          heightPercentage={height}
+          barWidth={defaultBarWidth}
+        />
+      );
+    });
+  }, [data, maxLoss, maxProfit, labelsSectionHeight]);
+
   return (
-    <div
-      style={{ height: 300, position: 'relative', opacity: `${rectHeight ? 1 : 0}`, transition: '0.3s ease' }}
-      className="text-secondary-text"
-    >
-      <div
-        style={{
-          width: '100%',
-          height: 1,
-          backgroundColor: 'black',
-          position: 'absolute',
-          top: `${rectHeight / 2}px`,
-          display: `${rectHeight ? 'block' : 'none'}`,
-        }}
-      ></div>
-      {/* <ResponsiveContainer> */}
-      <BarChart width={500} height={250} data={data} barCategoryGap={0} barSize={15}>
-        <XAxis dataKey="symbol" axisLine={false} tickLine={false} />
-        <YAxis domain={[-yDomain, yDomain]} tick={false} axisLine={false} />
-        <Tooltip />
-        <ReferenceLine y={0} stroke={`${rectHeight ? '#0000' : '#000'}`} strokeWidth={1} />
-        <Bar dataKey="profitPercentage">
-          {data.map((entry, index) => (
-            <Cell
-              key={`cell-${index}`}
-              strokeWidth={index === 2 ? 4 : 1}
-              fill={(entry.profitPercentage ?? 0) > 0 ? 'green' : 'red'}
-              width={15}
-            />
-          ))}
-        </Bar>
-      </BarChart>
-      {/* </ResponsiveContainer> */}
-    </div>
+    <BarChartWrapper className={className} ref={wrapperRef} labelsSectionHight={labelsSectionHeight}>
+      {barElements}
+    </BarChartWrapper>
   );
 };
