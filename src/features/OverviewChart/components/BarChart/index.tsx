@@ -1,13 +1,20 @@
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { BarItem } from './BarItem';
 import { data as mockData } from './mockData';
-import { BarChartWrapper } from './styles';
+import { BarChartWrapper, BarsScroller } from './styles';
 
-const defaultLabelsSectionHeight = 50;
+const defaultLabelsSectionHeight = 55;
 const defaultBarWidth = 10;
 const defaultBarPadding = 15;
+const defaultMinBarPadding = 8;
 
-export const OverviewBarChart: FC<{ data?: Vault[]; className?: string }> = ({ data = mockData, className = '' }) => {
+export const OverviewBarChart: FC<OverviewChartProps> = ({
+  data = mockData,
+  className = '',
+  barWidth = defaultBarWidth,
+  barPadding: propsBarPadding = defaultBarPadding,
+  minBarPadding = defaultMinBarPadding,
+}) => {
   const labelsSectionHeight = defaultLabelsSectionHeight;
   const [wrapperRect, setWrapperRect] = useState<DOMRectReadOnly>();
   const [resizeObserverError, setResizeIbserverError] = useState<string>();
@@ -19,7 +26,25 @@ export const OverviewBarChart: FC<{ data?: Vault[]; className?: string }> = ({ d
   }, [labelsSectionHeight, wrapperRect]);
 
   const wrapperWidth = wrapperRect?.width;
-  const barPadding = defaultBarPadding;
+  const barPadding = useMemo(() => {
+    if (!wrapperWidth || !data?.length) {
+      console.log('Padding => ', 'FAILED XXXX');
+      return propsBarPadding;
+    }
+
+    let padding = propsBarPadding;
+    const barWidthWithPaddings = barWidth + padding * 2;
+    const totalWidthNeeded = barWidthWithPaddings * data.length;
+
+    console.log('Padding => ', 'SIZE ===> ', totalWidthNeeded, wrapperWidth);
+    if (totalWidthNeeded > wrapperWidth) {
+      padding = Math.max((wrapperWidth / data.length - barWidth) / 2, minBarPadding);
+    }
+
+    return padding;
+  }, [wrapperWidth, data, barWidth, propsBarPadding, minBarPadding]);
+
+  console.log('Padding => ', barPadding);
 
   useEffect(() => {
     if (typeof ResizeObserver === 'undefined') {
@@ -31,7 +56,9 @@ export const OverviewBarChart: FC<{ data?: Vault[]; className?: string }> = ({ d
       return;
     }
 
-    const observer = new ResizeObserver((entries) => setWrapperRect(entries[0].contentRect));
+    const observer = new ResizeObserver((entries) => {
+      setWrapperRect(entries[0].contentRect);
+    });
     observer.observe(wrapperRef.current);
 
     return () => {
@@ -60,8 +87,7 @@ export const OverviewBarChart: FC<{ data?: Vault[]; className?: string }> = ({ d
   const barElements = useMemo(() => {
     return data?.map((item) => {
       const profitPercentage = item.profitPercentage ?? 0;
-      const isProfitable = profitPercentage >= 0;
-      const height = (Math.abs(profitPercentage) * 50) / chartScale; //(isProfitable ? maxProfit : maxLoss);
+      const height = (Math.abs(profitPercentage) * 50) / chartScale;
 
       return (
         <BarItem
@@ -74,11 +100,11 @@ export const OverviewBarChart: FC<{ data?: Vault[]; className?: string }> = ({ d
         />
       );
     });
-  }, [data, maxLoss, maxProfit, labelsSectionHeight]);
+  }, [data, labelsSectionHeight, barPadding, chartScale]);
 
   return (
     <BarChartWrapper className={className} ref={wrapperRef} labelsSectionHight={labelsSectionHeight}>
-      {barElements}
+      <BarsScroller>{barElements}</BarsScroller>
     </BarChartWrapper>
   );
 };

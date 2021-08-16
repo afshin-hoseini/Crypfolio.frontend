@@ -4,7 +4,6 @@ export const BarChartWrapper = styled.section<{ labelsSectionHight?: number }>`
   width: 100%;
   height: 100%;
   min-height: 150px;
-  display: flex;
   position: relative;
 
   &::after {
@@ -17,6 +16,15 @@ export const BarChartWrapper = styled.section<{ labelsSectionHight?: number }>`
     left: 0;
     top: calc((100% - ${(p) => p.labelsSectionHight}px) / 2);
   }
+`;
+
+export const BarsScroller = styled.div`
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  display: flex;
+  position: relative;
+  overflow: auto hidden;
 `;
 
 export const BarItemWarpper = styled.div`
@@ -51,6 +59,8 @@ export const BarItemWarpper = styled.div`
       transform-origin: right center;
       position: absolute;
       right: 50%;
+      top: 5px;
+      font-size: 13px;
     }
   }
 `;

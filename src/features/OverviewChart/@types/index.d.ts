@@ -7,3 +7,11 @@ type BarItemProps = {
   heightPercentage: number;
   barWidth: number;
 };
+
+type OverviewChartProps = {
+  data?: Vault[];
+  className?: string;
+  barWidth?: number;
+  minBarPadding?: number;
+  barPadding?: number;
+};

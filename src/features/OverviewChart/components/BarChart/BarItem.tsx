@@ -7,7 +7,7 @@ export const BarItem: FC<BarItemProps> = ({ data, label, labelSectionHeight, hei
   const wrapperWidth = space * 2 + barWidth;
 
   return (
-    <BarItemWarpper style={{ width: wrapperWidth }}>
+    <BarItemWarpper style={{ minWidth: wrapperWidth }}>
       <div className="bar-section">
         <span
           className={`bar-span ${barType}`}
