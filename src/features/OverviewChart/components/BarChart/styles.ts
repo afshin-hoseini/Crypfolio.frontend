@@ -38,6 +38,7 @@ export const BarItemWarpper = styled.div`
 
   .bar-span {
     position: absolute;
+    transition: all 0.3s ease;
     &.profit {
       background-color: ${(p) => p.theme.colors?.profit};
       bottom: 50%;
@@ -61,6 +62,20 @@ export const BarItemWarpper = styled.div`
       right: 50%;
       top: 5px;
       font-size: 13px;
+    }
+  }
+`;
+
+export const BarChartTooltipWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    .symbol-title {
+      margin-left: 20px;
     }
   }
 `;

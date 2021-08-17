@@ -1,7 +1,8 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BarItem } from './BarItem';
 import { data as mockData } from './mockData';
 import { BarChartWrapper, BarsScroller } from './styles';
+import { BarChartTooltip } from './BarChartTooltip';
 
 const defaultLabelsSectionHeight = 55;
 const defaultBarWidth = 10;
@@ -17,7 +18,6 @@ export const OverviewBarChart: FC<OverviewChartProps> = ({
 }) => {
   const labelsSectionHeight = defaultLabelsSectionHeight;
   const [wrapperRect, setWrapperRect] = useState<DOMRectReadOnly>();
-  const [resizeObserverError, setResizeIbserverError] = useState<string>();
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const barsSectionHeight = useMemo(() => {
@@ -28,7 +28,6 @@ export const OverviewBarChart: FC<OverviewChartProps> = ({
   const wrapperWidth = wrapperRect?.width;
   const barPadding = useMemo(() => {
     if (!wrapperWidth || !data?.length) {
-      console.log('Padding => ', 'FAILED XXXX');
       return propsBarPadding;
     }
 
@@ -36,7 +35,6 @@ export const OverviewBarChart: FC<OverviewChartProps> = ({
     const barWidthWithPaddings = barWidth + padding * 2;
     const totalWidthNeeded = barWidthWithPaddings * data.length;
 
-    console.log('Padding => ', 'SIZE ===> ', totalWidthNeeded, wrapperWidth);
     if (totalWidthNeeded > wrapperWidth) {
       padding = Math.max((wrapperWidth / data.length - barWidth) / 2, minBarPadding);
     }
@@ -44,17 +42,9 @@ export const OverviewBarChart: FC<OverviewChartProps> = ({
     return padding;
   }, [wrapperWidth, data, barWidth, propsBarPadding, minBarPadding]);
 
-  console.log('Padding => ', barPadding);
-
   useEffect(() => {
-    if (typeof ResizeObserver === 'undefined') {
-      setResizeIbserverError('Not supported');
-      return;
-    }
-    if (!wrapperRef.current) {
-      setResizeIbserverError('Error occured');
-      return;
-    }
+    if (typeof ResizeObserver === 'undefined') return;
+    if (!wrapperRef.current) return;
 
     const observer = new ResizeObserver((entries) => {
       setWrapperRect(entries[0].contentRect);
@@ -85,13 +75,14 @@ export const OverviewBarChart: FC<OverviewChartProps> = ({
 
   const chartScale = Math.max(maxProfit, Math.abs(maxLoss));
   const barElements = useMemo(() => {
-    return data?.map((item) => {
+    return data?.map((item, index) => {
       const profitPercentage = item.profitPercentage ?? 0;
       const height = (Math.abs(profitPercentage) * 50) / chartScale;
 
       return (
         <BarItem
           key={item.symbol}
+          index={index}
           data={item}
           labelSectionHeight={labelsSectionHeight}
           space={barPadding}
@@ -105,6 +96,7 @@ export const OverviewBarChart: FC<OverviewChartProps> = ({
   return (
     <BarChartWrapper className={className} ref={wrapperRef} labelsSectionHight={labelsSectionHeight}>
       <BarsScroller>{barElements}</BarsScroller>
+      <BarChartTooltip data={data} />
     </BarChartWrapper>
   );
 };

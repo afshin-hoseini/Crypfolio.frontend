@@ -12,7 +12,7 @@ export const decorators = [
     (Story) => (
         <I18nextProvider>
             <StyleProvider>
-                <Story />
+            {Story()}
             </StyleProvider>
         </I18nextProvider>
     ),

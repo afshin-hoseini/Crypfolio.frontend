@@ -11,7 +11,7 @@ export default {
       control: {
         type: 'range',
         min: -1,
-        max: 200,
+        max: mockData.length,
         step: 1,
       },
     },

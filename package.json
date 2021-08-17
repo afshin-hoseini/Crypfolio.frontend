@@ -35,9 +35,9 @@
     "react-select": "^3.1.0",
     "react-sortable-hoc": "^1.11.0",
     "react-table": "^7.5.0",
+    "react-tooltip": "^4.2.21",
     "recharts": "^1.8.5",
     "styled-components": "^5.1.1",
-    "typescript": "~3.7.2",
     "webfontloader": "^1.6.28"
   },
   "scripts": {
@@ -67,12 +67,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@storybook/addon-actions": "^6.0.21",
-    "@storybook/addon-essentials": "^6.0.21",
-    "@storybook/addon-links": "^6.0.21",
-    "@storybook/node-logger": "^6.0.21",
-    "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "^6.0.21",
+    "@storybook/addon-actions": "^6.3.7",
+    "@storybook/addon-essentials": "^6.3.7",
+    "@storybook/addon-links": "^6.3.7",
+    "@storybook/node-logger": "^6.3.7",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.7",
     "@types/webfontloader": "^1.6.32",
     "@typescript-eslint/eslint-plugin": "^3.10.1",
     "@typescript-eslint/parser": "^3.10.1",
@@ -93,6 +93,7 @@
     "prettier": "2.1.2",
     "prettier-eslint": "11.0.0",
     "prettier-eslint-cli": "5.0.0",
-    "react-is": "^16.13.1"
+    "react-is": "^16.13.1",
+    "typescript": "4.3.5"
   }
 }
