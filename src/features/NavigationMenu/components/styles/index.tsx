@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SideMenuWrapper = styled.div`
+export const SideMenuWrapper = styled.aside`
   display: flex;
   flex-direction: column;
   padding: 10px 0 30px 10px;

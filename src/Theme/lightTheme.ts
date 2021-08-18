@@ -81,42 +81,42 @@ export const lightTheme: StyledComponentsTheme = {
             font-family: Montserrat;
             font-style: normal;
             font-weight: bold;
-            font-size: 26px;
+            font-size: 20px;
             line-height: 32px;
         `,
     head1: `
             font-family: Nunito;
             font-style: normal;
             font-weight: bold;
-            font-size: 26px;
+            font-size: 20px;
             line-height: 35px;
         `,
     head2: `
             font-family: Nunito;
             font-style: normal;
             font-weight: bold;
-            font-size: 22px;
+            font-size: 16px;
             line-height: 30px;
         `,
     head3: `
             font-family: Nunito;
             font-style: normal;
             font-weight: normal;
-            font-size: 23px;
+            font-size: 17px;
             line-height: 31px;
         `,
     'primary-text': `
             font-family: Nunito;
             font-style: normal;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 25px;
         `,
     'secondary-text': `
             font-family: Nunito;
             font-style: normal;
             font-weight: normal;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 25px;
         `,
   },
