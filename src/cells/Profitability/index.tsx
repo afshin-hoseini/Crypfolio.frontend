@@ -10,7 +10,6 @@ export const Profitability: FC<Props> = ({ vault }) => {
   const { priceTickers } = usePriceContext();
   const currentPrice = priceTickers?.[vault?.symbol?.toLowerCase() || ''];
 
-  const tradedProfit = (vault.totalSell ?? 0) - (vault.totalBuy ?? 0);
   const remainingAssetValue = (vault.remainingAmount ?? 0) * (currentPrice ?? 0);
   const totalSell = (vault.totalSell ?? 0) + remainingAssetValue;
 

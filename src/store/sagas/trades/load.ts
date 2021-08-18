@@ -11,7 +11,7 @@ const loadTradesApi = () => {
 
 export function* loadTradesSaga() {
   try {
-    const trades = yield call(loadTradesApi);
+    const trades: Trade[] = yield call(loadTradesApi);
 
     // Notifies that trades has been loades.
     yield put(tradeSlice.actions.loaded(trades));

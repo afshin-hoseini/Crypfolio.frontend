@@ -14,7 +14,7 @@ export function* createTradeSaga(action: CreateTradeActionType) {
   const { tempId, trade } = action.payload;
 
   try {
-    const createdTrade = yield call(createTradeApi, trade);
+    const createdTrade: Trade = yield call(createTradeApi, trade);
 
     // Notifies that the trade has been created.
     yield put(

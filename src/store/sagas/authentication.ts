@@ -1,9 +1,12 @@
-import { call, put, takeEvery, takeLeading } from 'redux-saga/effects';
+import { call, CallEffect, put, takeEvery, takeLeading } from 'redux-saga/effects';
+import { User } from 'src/@types';
 import { ApiCallStatus } from 'src/@types/enums';
 import { authenticationSlice } from '../reducers';
 
+type LoginInfo = { user: User; token: string };
+
 const loginApiCall = (payload: { username: string; password: string }) => {
-  return new Promise((resolve, reject) => {
+  return new Promise<LoginInfo>((resolve, reject) => {
     setTimeout(() => {
       resolve({
         user: {
@@ -22,7 +25,7 @@ const loginApiCall = (payload: { username: string; password: string }) => {
  */
 function* handleLogin(action: ReturnType<typeof authenticationSlice.actions.login>) {
   try {
-    const authResponse = yield call(loginApiCall, action.payload);
+    const authResponse: LoginInfo = yield call(loginApiCall, action.payload);
     yield put(authenticationSlice.actions.loggedinSuccessfully(authResponse));
   } catch (e) {
     yield put(

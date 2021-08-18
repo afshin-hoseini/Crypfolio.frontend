@@ -1,5 +1,4 @@
 import React, { FC, useContext, useMemo } from 'react';
-//Hello
 import { createGlobalStyle } from 'styled-components';
 import { ThemeContext } from 'styled-components';
 //.typograph-main-title,.text-main-title{font-family:Montserrat;font-style:normal;font-weight:bold;font-size:26px;line-height:32px;}

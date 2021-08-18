@@ -1,4 +1,5 @@
 import { all, call, put, takeLeading } from 'redux-saga/effects';
+import { User } from 'src/@types';
 import { ApiCallStatus } from 'src/@types/enums';
 import { userSlice } from 'src/store/reducers';
 
@@ -16,7 +17,7 @@ const fetchUser = () => {
 
 function* getUserHandler() {
   try {
-    const user = yield call(fetchUser);
+    const user: User = yield call(fetchUser);
 
     yield all([
       put(userSlice.actions.setUser(user)),
