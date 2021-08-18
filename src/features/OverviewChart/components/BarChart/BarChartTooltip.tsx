@@ -4,7 +4,7 @@ import { SymbolIcon } from 'src/components/SymbolIcon';
 import { PrimaryText, SecondaryText } from 'src/components/Text';
 import { BarChartTooltipWrapper } from './styles';
 
-export const BarChartTooltip: FC<BarChartTooltipProps> = ({ data }) => {
+export const BarChartTooltip: FC<BarChartTooltipProps> = ({ data, tooltipId }) => {
   const renderTooltipContent = useCallback(
     (dataIndexStr: string) => {
       if (!data) return null;
@@ -32,5 +32,5 @@ export const BarChartTooltip: FC<BarChartTooltipProps> = ({ data }) => {
     if ((data?.length ?? 0) > 0) ReactTooltip.rebuild();
   }, [data]);
 
-  return <ReactTooltip effect="solid" delayShow={500} getContent={renderTooltipContent} />;
+  return <ReactTooltip id={tooltipId} effect="solid" delayShow={500} getContent={renderTooltipContent} />;
 };

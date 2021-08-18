@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { BarItem } from './BarItem';
 import { data as mockData } from './mockData';
 import { BarChartWrapper, BarsScroller } from './styles';
@@ -16,14 +16,10 @@ export const OverviewBarChart: FC<OverviewChartProps> = ({
   barPadding: propsBarPadding = defaultBarPadding,
   minBarPadding = defaultMinBarPadding,
 }) => {
+  const tooltipId = useRef(`barchart_tip_${Date.now()}`);
   const labelsSectionHeight = defaultLabelsSectionHeight;
   const [wrapperRect, setWrapperRect] = useState<DOMRectReadOnly>();
   const wrapperRef = useRef<HTMLDivElement>(null);
-
-  const barsSectionHeight = useMemo(() => {
-    if (!wrapperRect) return 0;
-    return wrapperRect.height - labelsSectionHeight;
-  }, [labelsSectionHeight, wrapperRect]);
 
   const wrapperWidth = wrapperRect?.width;
   const barPadding = useMemo(() => {
@@ -81,6 +77,7 @@ export const OverviewBarChart: FC<OverviewChartProps> = ({
 
       return (
         <BarItem
+          tooltipId={tooltipId.current}
           key={item.symbol}
           index={index}
           data={item}
@@ -96,7 +93,7 @@ export const OverviewBarChart: FC<OverviewChartProps> = ({
   return (
     <BarChartWrapper className={className} ref={wrapperRef} labelsSectionHight={labelsSectionHeight}>
       <BarsScroller>{barElements}</BarsScroller>
-      <BarChartTooltip data={data} />
+      <BarChartTooltip data={data} tooltipId={tooltipId.current} />
     </BarChartWrapper>
   );
 };

@@ -7,6 +7,7 @@ type BarItemProps = {
   heightPercentage: number;
   barWidth: number;
   index: number;
+  tooltipId?: string;
 };
 
 type OverviewChartProps = {
@@ -19,4 +20,5 @@ type OverviewChartProps = {
 
 type BarChartTooltipProps = {
   data?: Vault[];
+  tooltipId?: string;
 };
