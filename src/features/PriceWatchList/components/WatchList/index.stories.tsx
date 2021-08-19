@@ -18,7 +18,7 @@ const FakePriceTickerProvider: FC = () => {
   const timerHandler = useRef<number>();
 
   useEffect(() => {
-    timerHandler.current = setInterval(
+    timerHandler.current = window.setInterval(
       () =>
         setPriceTickers?.({
           BTC: Math.random() * 10000,

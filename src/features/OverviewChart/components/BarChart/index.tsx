@@ -9,7 +9,7 @@ const defaultBarWidth = 10;
 const defaultBarPadding = 15;
 const defaultMinBarPadding = 8;
 
-export const OverviewBarChart: FC<OverviewChartProps> = ({
+export const BarChart: FC<BarChartProps> = ({
   data = mockData,
   className = '',
   barWidth = defaultBarWidth,

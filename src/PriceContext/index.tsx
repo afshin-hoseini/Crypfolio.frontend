@@ -14,16 +14,7 @@ export const PriceContextProvider: FC = ({ children }) => {
     [getSymbolTicker, priceTickers]
   );
 
-  return (
-    <PriceContext.Provider
-      value={{
-        getSymbolTicker,
-        priceTickers,
-      }}
-    >
-      {children}
-    </PriceContext.Provider>
-  );
+  return <PriceContext.Provider value={value}>{children}</PriceContext.Provider>;
 };
 
 export const usePriceContext = () => useContext(PriceContext);
