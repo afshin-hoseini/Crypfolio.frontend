@@ -20,8 +20,11 @@ export const DashboardPage = () => {
               return title;
             }}
           </DashboardPageConsumer>
-          <Route exact path="/" component={OverviewPage} />
-          <Route exact path="/details" component={DetailsPage} />
+
+          <article className="main-content">
+            <Route exact path="/" component={OverviewPage} />
+            <Route exact path="/details" component={DetailsPage} />
+          </article>
         </DashboardContent>
       </DashboardContainer>
     </DashboardPageProvider>

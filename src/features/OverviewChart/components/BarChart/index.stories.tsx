@@ -1,10 +1,10 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
-import { OverviewBarChart } from './index';
+import { BarChart } from './index';
 import { storyMockData as mockData } from './mockData';
 
 export default {
-  component: OverviewBarChart,
+  component: BarChart,
   title: 'Features/OverviewBarChart',
   argTypes: {
     dataCount: {
@@ -18,11 +18,11 @@ export default {
   },
 } as Meta;
 
-type BarChartTemplateProps = OverviewChartProps & { dataCount: number };
+type BarChartTemplateProps = BarChartProps & { dataCount: number };
 
 const BarChartTemplate: Story<BarChartTemplateProps> = ({ data, dataCount, ...rest }) => {
   const d = dataCount > -1 ? data?.slice(0, dataCount) : data;
-  return <OverviewBarChart {...rest} data={d} />;
+  return <BarChart {...rest} data={d} />;
 };
 
 export const SimpleBarChart = BarChartTemplate.bind({});

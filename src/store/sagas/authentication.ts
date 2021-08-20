@@ -1,4 +1,4 @@
-import { call, CallEffect, put, takeEvery, takeLeading } from 'redux-saga/effects';
+import { call, put, takeEvery, takeLeading } from 'redux-saga/effects';
 import { User } from 'src/@types';
 import { ApiCallStatus } from 'src/@types/enums';
 import { authenticationSlice } from '../reducers';

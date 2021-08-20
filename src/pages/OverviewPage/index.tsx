@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import { MainContainer } from 'src/components/Containers';
 import { NetProfitLossViewer } from 'src/features/NetProfitLossViewer';
-
+import { OverviewBarChart } from 'src/features/OverviewChart';
 import { OverviewTable } from 'src/features/OverviewTable';
 import { PriceWatchList } from 'src/features/PriceWatchList/container';
 import { useDashboardPage } from '../Dashboard/Context';
@@ -11,12 +12,15 @@ export const OverviewPage = () => {
 
   useEffect(() => {
     setTitle!('Portfolio Overview');
-  }, []);
+  }, [setTitle]);
 
   return (
     <OverviewContainer>
+      <MainContainer className="overview-chart-wrapper">
+        <OverviewBarChart />
+      </MainContainer>
       <OverviewTablesSection>
-        <OverviewTable />
+        <OverviewTable className="overview-table" />
         <section className="quick-look-section">
           <NetProfitLossViewer />
           <PriceWatchList />

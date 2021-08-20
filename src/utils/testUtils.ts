@@ -6,10 +6,11 @@
 export function GetStyle(CLASSname: string) {
   const styleSheets = document.styleSheets;
   const styleSheetsLength = styleSheets.length;
+  let classes;
   for (let i = 0; i < styleSheetsLength; i++) {
-    const styleSheet = styleSheets[i] as any;
+    const styleSheet = styleSheets[i];
     if (styleSheet.rules) {
-      var classes = styleSheet.rules;
+      classes = styleSheet.rules;
     } else {
       try {
         if (!styleSheet.cssRules) {
@@ -22,7 +23,7 @@ export function GetStyle(CLASSname: string) {
           continue;
         }
       }
-      var classes = styleSheet.cssRules;
+      classes = styleSheet.cssRules;
     }
     for (let x = 0; x < classes.length; x++) {
       const classObject = classes[x] as any;
