@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { MainContainer } from 'src/components/Containers';
 import { NetProfitLossViewer } from 'src/features/NetProfitLossViewer';
 import { OverviewBarChart } from 'src/features/OverviewChart';
 import { OverviewTable } from 'src/features/OverviewTable';
@@ -15,9 +16,11 @@ export const OverviewPage = () => {
 
   return (
     <OverviewContainer>
-      <OverviewBarChart />
+      <MainContainer className="overview-chart-wrapper">
+        <OverviewBarChart />
+      </MainContainer>
       <OverviewTablesSection>
-        <OverviewTable />
+        <OverviewTable className="overview-table" />
         <section className="quick-look-section">
           <NetProfitLossViewer />
           <PriceWatchList />

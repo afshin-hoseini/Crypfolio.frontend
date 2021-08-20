@@ -8,7 +8,7 @@ export function GetStyle(CLASSname: string) {
   const styleSheetsLength = styleSheets.length;
   let classes;
   for (let i = 0; i < styleSheetsLength; i++) {
-    const styleSheet = styleSheets[i] as any;
+    const styleSheet = styleSheets[i];
     if (styleSheet.rules) {
       classes = styleSheet.rules;
     } else {
