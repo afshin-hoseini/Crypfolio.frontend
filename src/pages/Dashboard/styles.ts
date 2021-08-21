@@ -10,7 +10,7 @@ export const DashboardContainer = styled.main`
   }
 `;
 
-export const DashboardContent = styled.article`
+export const DashboardContentWrapper = styled.article`
   display: flex;
   width: 100%;
   height: 100%;
